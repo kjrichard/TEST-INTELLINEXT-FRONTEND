@@ -1,0 +1,66 @@
+<div class="col-xl-12">
+    <div class="card">
+        <div class="card-header pb-0">
+            <div class="d-flex justify-content-between">
+                <h4 class="card-title mg-b-0">Libros Registrados</h4>
+                <button (click)="create()" type="button" class="btn btn-secondary btn-sm">+ Registrar Libro</button>
+               
+            </div>
+           <br>
+        </div>
+        <div class="card-body">
+            <div class="table-responsive">
+                <table class="table mg-b-0 text-md-nowrap">
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>Titulo</th>
+                            <th>Editorial</th>
+                            <th>Año</th>
+                            <th>Autor</th>
+                            <th>ISBN</th>
+                            <th>Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let item of book, index as id">
+                            <th>{{ id + 1 }}</th>
+                            <td>{{ item.Book_Title }}</td>
+                            <td>{{ item.Publisher }}</td>
+                            <td>{{ item.Year_Of_Publication }}</td>
+                            <td>{{ item.Book_Author }}</td>
+                            <td>{{ item.ISBN }}</td>
+                            <td class="w200">
+                                <div class="d-flex justify-content-center">
+                                    <button
+                                    type="button"
+                                    class="btn btn-outline-indigo float-right btn-round mr-3 btn-sm"
+                                    (click)="detail(item)"
+                                  >
+                                    <i class="fa fa-eye fa-sm"></i>
+                                  </button>
+
+                                  <button
+                                    type="button"
+                                    class="btn btn-outline-indigo float-right btn-round mr-3 btn-sm"
+                                    (click)="update(item)"
+                                  >
+                                    <i class="fa fa-pencil fa-sm"></i>
+                                  </button>
+
+                                  <button
+                                    type="button"
+                                    class="btn btn-outline-indigo float-right btn-round btn-sm"
+                                    (click)="delete(item._id)"
+                                  >
+                                    <i class="fa fa-trash fa-sm"></i>
+                                  </button>
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
