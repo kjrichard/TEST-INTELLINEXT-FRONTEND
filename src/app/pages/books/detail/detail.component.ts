@@ -34,14 +34,14 @@ export class DetailComponent implements OnInit {
   ) { 
     this.book = this.bootSevice.book;
     if (this.book == null ) {
-      router.navigateByUrl('/usuarios').then(() => { window.location.reload() });
+      router.navigateByUrl('/libros').then(() => { window.location.reload() });
     }
 
   }
 
   ngOnInit(): void {
 
-    this.fields();
+   this.fields();
   }
 
   fields() {
@@ -54,6 +54,7 @@ export class DetailComponent implements OnInit {
      
   
   }
+  
 
   validate(field: string): boolean {
     if( this.registerForm.get(field)?.invalid ) {

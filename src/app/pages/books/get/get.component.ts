@@ -3,6 +3,7 @@ import { BookInterface } from 'src/app/interfaces/book.interface';
 import { BookService } from '../../../services/book.service';
 import { Router } from '@angular/router';
 import Swal from 'sweetalert2';
+import { FormBuilder, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-get',
@@ -11,13 +12,47 @@ import Swal from 'sweetalert2';
 export class GetComponent implements OnInit {
 
   public book: BookInterface;
+  public loading: boolean = true;
+  public pages: number = 1;
+  public param: string;
+  public total: any;
+
+  public searchForm  =   this.fb.group({
+
+    field : [ '', Validators.required],
+    body :  [ '', Validators.required],  
+  
+  });
  
 
-  constructor( private bookService: BookService, public router: Router ) { }
+  constructor( private bookService: BookService, public router: Router, private fb: FormBuilder, ) { }
 
   ngOnInit(): void {
    this.getAll();
   }
+
+  validate(field: string): boolean {
+    if( this.searchForm.get(field)?.invalid ) {
+      return true;
+    }
+    return false;
+  }
+
+  search() {
+
+    let body : string = this.searchForm.get('body').value;
+    let field: string = this.searchForm.get('field').value;
+
+
+    this.bookService.search( field, body ).subscribe( ( res: any ) => {
+      this.book = res.data.data;
+      this.total = res.data.total;
+      console.log(body, field);
+      
+    })
+  }
+
+ 
 
   create() {
     this.router.navigateByUrl('libros/crear')
@@ -25,19 +60,21 @@ export class GetComponent implements OnInit {
 
   update( item: BookInterface ) {
     this.bookService.book = item;
-    this.router.navigateByUrl('usuarios/actualizar')
+    this.router.navigateByUrl('libros/actualizar')
   }
 
   detail( item: BookInterface ) {
     this.bookService.book = item;
-    this.router.navigateByUrl('usuarios/informacion')
+    this.router.navigateByUrl('libros/informacion')
   }
 
   getAll() {
-    this.bookService.getAll().subscribe( ( res: any ) => {
+    this.loading = true;
+    this.bookService.getAll( this.pages ).subscribe( ( res: any ) => {
+      this.loading = false;
       console.log(res);
       
-     this.book = res.books;
+     this.book = res.data.data;
       
     })
   }
@@ -69,6 +106,24 @@ export class GetComponent implements OnInit {
       }
     })
 
+  }
+
+  next() {
+    
+   
+    this.pages ++;
+    this.getAll( );
+  }
+
+  previous() {
+
+    this.pages --;
+    this.getAll();
+  }
+
+  cancel() {
+    this.searchForm.reset();
+    this.getAll();
   }
 
 }

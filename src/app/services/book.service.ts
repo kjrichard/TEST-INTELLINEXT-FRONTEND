@@ -24,16 +24,20 @@ export class BookService {
 
 
 
-  getAll() {
-    return this.http.get(`${ base_url }/books` );
+  getAll( pages: number ) {
+    return this.http.get(`${ base_url }/books?page=${ pages }` );
+  }
+
+  search( params: string, body: string ) {
+    return this.http.get(`${ base_url }/books/${ params }/${ body}` );
   }
 
   create( data: BookInterface) {
     return this.http.post(`${ base_url }/books`,  data  );
   }
 
-  updateUser( id: string, data: BookInterface ) {
-    return this.http.patch(`${ base_url }/books/`+id, data  );
+  update( id: string, data: BookInterface ) {
+    return this.http.put(`${ base_url }/books/`+id, data  );
   }
 
   delete( id: string) {

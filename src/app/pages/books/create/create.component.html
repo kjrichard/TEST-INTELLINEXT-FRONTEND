@@ -54,7 +54,7 @@
                                         id="Book_Author"
                                         formControlName="Book_Author" 
                                         class="form-control" 
-                                        placeholder="incere@april.biz"
+                                        placeholder="Wolfgang Schmidbauer"
                                     >
                                     <small class="ftext-danger" *ngIf="validate('Book_Author')"> Campo Obligatorio </small> 
                                 </div>
@@ -68,7 +68,7 @@
                                         id="Year_Of_Publication"
                                         formControlName="Year_Of_Publication"
                                         class="form-control" 
-                                        placeholder="10-692-6593 x09125"
+                                        placeholder="1997"
                                     >
                                     <small class="text-danger" *ngIf="validate('Year_Of_Publication')"> Campo Obligatorio </small> 
                                 </div>
@@ -82,7 +82,7 @@
                                         id="Publisher"
                                         formControlName="Publisher" 
                                         class="form-control" 
-                                        placeholder="nastasia.net"
+                                        placeholder="Hilflose Helfer."
                                     >
                                     <small class="text-danger" *ngIf="validate('Publisher')"> Campo Obligatorio </small> 
                                 </div>
@@ -106,7 +106,7 @@
                                         id="Image_URL_S"
                                         formControlName="Image_URL_S" 
                                         class="form-control" 
-                                        placeholder="nastasia.net"
+                                        placeholder="http://images.amazon.com/images/P/3499191962.01.THUMBZZZ.jpg"
                                     >
                                     <small class="text-danger" *ngIf="validate('Image_URL_S')"> Campo Obligatorio </small> 
                                 </div>
@@ -120,7 +120,7 @@
                                         id="Image_URL_M"
                                         formControlName="Image_URL_M" 
                                         class="form-control" 
-                                        placeholder="nastasia.net"
+                                        placeholder="http://images.amazon.com/images/P/3499191962.01.THUMBZZZ.jpg"
                                     >
                                     <small class="text-danger" *ngIf="validate('Image_URL_M')"> Campo Obligatorio </small> 
                                 </div>
@@ -134,7 +134,7 @@
                                         id="Image_URL_L"
                                         formControlName="Image_URL_L" 
                                         class="form-control" 
-                                        placeholder="nastasia.net"
+                                        placeholder="http://images.amazon.com/images/P/3499191962.01.THUMBZZZ.jpg"
                                     >
                                     <small class="text-danger" *ngIf="validate('Image_URL_L')"> Campo Obligatorio </small> 
                                 </div>
@@ -145,7 +145,7 @@
                     </div>
                     <div class="row row-xs wd-xl-80p justify-content-center">
                         <div class="col-sm-6 col-md-3">
-                            <button class="btn btn-success btn-block">Registrar</button>
+                            <button [disabled]="registerForm.invalid" class="btn btn-success btn-block">Registrar</button>
                         </div>
                         <div class="col-sm-6 col-md-3 mg-t-10 mg-sm-t-0">
                             <button (click)="cancel()" class="btn btn-indigo btn-block">Cancelar</button>
@@ -157,3 +157,6 @@
         </div>
     </div>
 </div>
+
+
+

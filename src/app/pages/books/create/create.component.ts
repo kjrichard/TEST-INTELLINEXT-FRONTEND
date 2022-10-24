@@ -17,7 +17,7 @@ export class CreateComponent implements OnInit {
     ISBN                  :  [ '', [ Validators.required, Validators.min(5)]],
     Book_Title            :  [ '', [ Validators.required, Validators.minLength(3)]],
     Book_Author           :  [ '', [ Validators.required, Validators.minLength(6)]],
-    Year_Of_Publication   :  [ '', [ Validators.required, Validators.min(4), Validators.max(4)]],
+    Year_Of_Publication   :  [ '', [ Validators.required,]],
     Publisher             :  [ '', [ Validators.required, Validators.minLength(4)]],
     Image_URL_S           :  [ '', [ Validators.required, Validators.minLength(8)]],
     Image_URL_M           :  [ '', [ Validators.required, Validators.minLength(8)]],
@@ -48,7 +48,7 @@ export class CreateComponent implements OnInit {
     
 
       this.bookServive.create( this.registerForm.value ).subscribe( ( res ) => {
-        console.log( res );
+       
         Swal.fire({
           position: 'center',
           icon: 'success',
@@ -56,6 +56,7 @@ export class CreateComponent implements OnInit {
           showConfirmButton: false,
           timer: 1500
         })
+        this.router.navigateByUrl('/libros');
       }, ( error ) => {
         console.log( error );
         Swal.fire({

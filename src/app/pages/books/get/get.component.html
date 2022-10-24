@@ -2,18 +2,75 @@
     <div class="card">
         <div class="card-header pb-0">
             <div class="d-flex justify-content-between">
-                <h4 class="card-title mg-b-0">Libros Registrados</h4>
+                <h4 class="card-title mg-b-0">Selecione el parametro de busqueda</h4>
                 <button (click)="create()" type="button" class="btn btn-secondary btn-sm">+ Registrar Libro</button>
                
             </div>
+            <form   
+            autocomplete="off"
+            [formGroup]="searchForm"
+            id="searchForm">
+            <div class="form-body">
+                <div class="row row-xs ">
+                    <div class="col-md-2 mg-t-10 mg-md-t-0">
+                    <select class="form-control" aria-label="Default select example" formControlName="field">
+                        <option disabled>Seleccione</option>
+                        <option value="Book_Title">Titulo</option>
+                        <option value="Book_Author">Autor</option>
+                        <option value="Publisher">Editorial</option>
+                        <option value="ISBN">ISBN</option>
+                        <option value="Year_Of_Publication">Año</option>
+                    </select>
+                    </div>
+                
+                    <div class="col-md-2 mg-t-10 mg-md-t-0"  *ngIf="!validate('field')" >
+                    <input class="form-control" placeholder="Ingrese palabra clave" type="text" formControlName="body">
+                    </div>
+                    <div class="col-md m-t-20 mt-md-0"  *ngIf="!validate('field')">
+                      <button (click)="search()" [disabled]="searchForm.invalid"  (click)="search()" class="btn btn-info ">Buscar</button>
+                      &nbsp;
+                      <button (click)="cancel()" class="btn btn-outline-indigo ">Limpiar</button>
+                    </div>
+                    
+                    
+                </div>
+                
+            </div>
+        </form>
            <br>
+
+           
         </div>
+    
+       
+        
+
+     
+
+         	<!-- row -->
+				
+					<!-- /row -->
+
         <div class="card-body">
+
+          <div class="row animated fadeIn fast"
+            *ngIf="loading">
+            <div class="col-12">
+                
+                <div class="alert alert-info text-center">
+                  <h4 class="alert-heading">Cargando</h4>
+                  <i class="fa fa-spin fa-refresh fa-2x"></i>
+                  <p class="mb-0">Por favor espere</p>
+                </div>
+
+            </div>
+          </div> 
             <div class="table-responsive">
                 <table class="table mg-b-0 text-md-nowrap">
                     <thead>
                         <tr>
                             <th>#</th>
+                            <th>Portada</th>
                             <th>Titulo</th>
                             <th>Editorial</th>
                             <th>Año</th>
@@ -23,8 +80,12 @@
                         </tr>
                     </thead>
                     <tbody>
+                     
                         <tr *ngFor="let item of book, index as id">
                             <th>{{ id + 1 }}</th>
+                            <td>
+                              <img alt="Responsive image" class="img-fluid" [src]="item.Image_URL_S"  alt="50px" width="50px">
+                            </td>
                             <td>{{ item.Book_Title }}</td>
                             <td>{{ item.Publisher }}</td>
                             <td>{{ item.Year_Of_Publication }}</td>
@@ -59,7 +120,12 @@
                             </td>
                         </tr>
                     </tbody>
+                   
                 </table>
+                <button  (click)="previous()" type="button" class="btn btn-primary btn-sm"[disabled] = "pages == 1">Anterior</button>
+                &nbsp;
+                <button  (click)="next()" type="button" class="btn btn-secondary btn-sm" [disabled] = "total < 10" >Siguiente</button>
+              
             </div>
         </div>
     </div>

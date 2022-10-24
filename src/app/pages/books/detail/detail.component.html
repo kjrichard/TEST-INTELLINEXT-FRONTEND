@@ -8,7 +8,6 @@
                 <form   
                     autocomplete="off"
                     [formGroup]="registerForm"
-                    (ngSubmit)="createUser()"
                     id="registerForm">
                     <div class="form-body">
                         <div class="card-header bg-info">
@@ -54,7 +53,7 @@
                                         id="Book_Author"
                                         formControlName="Book_Author" 
                                         class="form-control" 
-                                        placeholder="incere@april.biz"
+                                        placeholder="Wolfgang Schmidbauer"
                                     >
                                     <small class="ftext-danger" *ngIf="validate('Book_Author')"> Campo Obligatorio </small> 
                                 </div>
@@ -68,7 +67,7 @@
                                         id="Year_Of_Publication"
                                         formControlName="Year_Of_Publication"
                                         class="form-control" 
-                                        placeholder="10-692-6593 x09125"
+                                        placeholder="1997"
                                     >
                                     <small class="text-danger" *ngIf="validate('Year_Of_Publication')"> Campo Obligatorio </small> 
                                 </div>
@@ -82,7 +81,7 @@
                                         id="Publisher"
                                         formControlName="Publisher" 
                                         class="form-control" 
-                                        placeholder="nastasia.net"
+                                        placeholder="Rowohlt Tb."
                                     >
                                     <small class="text-danger" *ngIf="validate('Publisher')"> Campo Obligatorio </small> 
                                 </div>
@@ -96,53 +95,49 @@
                         <div class="card-header bg-info">
                             <h4 class="m-b-0 text-white">Imagenes</h4>
                         </div>
+                        <br>
+                        
                         <!--/row-->
-                        <div class="row p-t-10">
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <label class="control-label">Url de la imagen S</label>
-                                    <input 
-                                        type="text" 
-                                        id="Image_URL_S"
-                                        formControlName="Image_URL_S" 
-                                        class="form-control" 
-                                        placeholder="nastasia.net"
-                                    >
-                                    <small class="text-danger" *ngIf="validate('Image_URL_S')"> Campo Obligatorio </small> 
+                        <div class="row el-element-overlay">
+                            <div class="col-lg-4 col-md-6">
+                                <div class="card">
+                                    <div class="el-card-item">
+                                        <div>
+                                            <img alt="Responsive image" class="img-fluid" [src]="book.Image_URL_M"  alt="100px" width="100px">
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
-
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <label class="control-label">Url de la imagen M</label>
-                                    <input 
-                                        type="text" 
-                                        id="Image_URL_M"
-                                        formControlName="Image_URL_M" 
-                                        class="form-control" 
-                                        placeholder="nastasia.net"
-                                    >
-                                    <small class="text-danger" *ngIf="validate('Image_URL_M')"> Campo Obligatorio </small> 
+    
+                            <div class="col-lg-4 col-md-6">
+                                <div class="card">
+                                    <div class="el-card-item">
+                                        <div>
+                                            <img alt="Responsive image" class="img-fluid" [src]="book.Image_URL_L"  alt="100px" width="100px">
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
-
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <label class="control-label">Url de la imagen L</label>
-                                    <input 
-                                        type="text" 
-                                        id="Image_URL_L"
-                                        formControlName="Image_URL_L" 
-                                        class="form-control" 
-                                        placeholder="nastasia.net"
-                                    >
-                                    <small class="text-danger" *ngIf="validate('Image_URL_L')"> Campo Obligatorio </small> 
+    
+                            <div class="col-lg-4 col-md-6">
+                                <div class="card">
+                                    <div class="el-card-item">
+                                        <div>
+                                            <img alt="Responsive image" class="img-fluid" [src]="book.Image_URL_S"  alt="100px" width="100px">
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
+    
                         </div>
-                      
+
+                     
+                     
                       
                     </div>
+                  
+                   
+
                     <div class="justify-content-center">
                         <button (click)="cancel()" class="btn btn-outline-info btn-block">Regresar al listado de libros</button>
                     </div>
